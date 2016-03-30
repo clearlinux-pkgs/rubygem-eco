@@ -4,7 +4,7 @@
 #
 Name     : rubygem-eco
 Version  : 1.0.0
-Release  : 4
+Release  : 5
 URL      : https://rubygems.org/downloads/eco-1.0.0.gem
 Source0  : https://rubygems.org/downloads/eco-1.0.0.gem
 Summary  : No detailed summary available
@@ -32,17 +32,17 @@ gem spec %{SOURCE0} -l --ruby > rubygem-eco.gemspec
 gem build rubygem-eco.gemspec
 
 %install
-gem_dir=$(ruby -e'puts Gem.default_dir')
+%global gem_dir $(ruby -e'puts Gem.default_dir')
 gem install -V \
 --local \
 --force \
---install-dir .${gem_dir} \
+--install-dir .%{gem_dir} \
 --bindir .%{_bindir} \
 eco-1.0.0.gem
 
-mkdir -p %{buildroot}${gem_dir}
-cp -pa .${gem_dir}/* \
-%{buildroot}${gem_dir}
+mkdir -p %{buildroot}%{gem_dir}
+cp -pa .%{gem_dir}/* \
+%{buildroot}%{gem_dir}
 
 if [ -d .%{_bindir} ]; then
 mkdir -p %{buildroot}%{_bindir}
@@ -50,23 +50,11 @@ cp -pa .%{_bindir}/* \
 %{buildroot}%{_bindir}/
 fi
 
+
 %files
 %defattr(-,root,root,-)
-/usr/lib64/ruby/gems/2.2.0/cache/eco-1.0.0.gem
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/Source/cdesc-Source.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/Source/combined_contents-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/Source/contents-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/Source/context-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/Source/path%3d-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/Source/path-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/Source/version-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/cdesc-Eco.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/compile-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/context_for-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/render-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/Eco/version-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/eco-1.0.0/ri/cache.ri
-/usr/lib64/ruby/gems/2.2.0/gems/eco-1.0.0/LICENSE
-/usr/lib64/ruby/gems/2.2.0/gems/eco-1.0.0/README.md
-/usr/lib64/ruby/gems/2.2.0/gems/eco-1.0.0/lib/eco.rb
-/usr/lib64/ruby/gems/2.2.0/specifications/eco-1.0.0.gemspec
+/usr/lib64/ruby/gems/2.3.0/cache/eco-1.0.0.gem
+/usr/lib64/ruby/gems/2.3.0/gems/eco-1.0.0/LICENSE
+/usr/lib64/ruby/gems/2.3.0/gems/eco-1.0.0/README.md
+/usr/lib64/ruby/gems/2.3.0/gems/eco-1.0.0/lib/eco.rb
+/usr/lib64/ruby/gems/2.3.0/specifications/eco-1.0.0.gemspec
